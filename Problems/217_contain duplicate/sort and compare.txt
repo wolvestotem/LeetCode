@@ -1,0 +1,17 @@
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums);
+};
+
+//Discussion solution
+bool Solution::containsDuplicate(vector<int>& nums){
+    if (nums.size()<2) return(false);
+    sort(nums.begin(),nums.end());//---------sort to reduce complexity
+    int lo = 0, hi =1;
+    bool result = false;
+    for (int i = 1; i<nums.size(); i++){
+        if (nums[lo] == nums[hi]) {result = true;break;}
+        lo++;hi++;
+    }
+    return(result);
+}

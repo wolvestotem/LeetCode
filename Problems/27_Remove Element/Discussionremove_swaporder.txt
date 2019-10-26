@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val);
+};
+
+//Discussion solution
+int Solution::removeElement(vector<int>& nums, int val){
+    if(nums.empty())return(0);
+    int vec_end = nums.size()-1;
+    for (int p = 0; p<vec_end+1; p++){//p变化范围是变的
+        if (nums[p] == val){
+            nums[p] = nums[vec_end];
+            vec_end--;
+            p--;
+        }
+    }
+    return(vec_end+1);
+}

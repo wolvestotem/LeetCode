@@ -1,0 +1,19 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums);
+};
+
+int Solution::removeDuplicates(vector<int>& nums){
+    if(nums.empty())return(0);//所有涉及nums.size(),考虑input为空情况
+    
+    int length = 1;int pre_value = nums[0];
+    for (int i = 1; i<nums.size(); i++){//nums为空时，nums.size()=-1
+        if (nums[i] != pre_value){
+            nums[length] = nums[i];
+            length++;
+            pre_value = nums[i];
+        }
+    }
+    nums.erase(nums.begin()+length, nums.end());
+    return(length);
+}

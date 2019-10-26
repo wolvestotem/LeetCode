@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool isValid(string s);
+};
+
+bool Solution::isValid(string s){
+    if (s.empty()) return true;
+    stack<char> st;
+    for (int i = 0; i<s.size(); i++){
+        if (s[i]=='(' || s[i]=='[' || s[i]=='{'){
+            st.push(s[i]);
+        }
+        else if (!st.empty()){
+            if (s[i]==')' && st.top()=='(')
+                st.pop();
+            else if (s[i]==']' && st.top()=='[')
+                st.pop();
+            else if (s[i]=='}' && st.top()=='{')
+                st.pop();
+            else return false;
+        }
+        else return false;
+    }
+    return st.empty();//------------是否左括号剩余
+}
+

@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target);
+    
+};
+
+vector<int> Solution::twoSum(vector<int>& nums, int target){//没有添加类作用域
+    unordered_map<int,int> mapatemp;
+    for (int i = 0; i < nums.size(); i++){
+        mapatemp[nums[i]]=i;//map初始化方法
+    }
+    vector<int> result;
+    for (int j = 0; j < nums.size(); j++){
+        int complement = target - nums[j];
+        if (mapatemp.find(complement) != mapatemp.end() && mapatemp.find(complement)->second != j){
+            result.push_back(j);
+            result.push_back(mapatemp.find(complement)->second);
+            // return(result);//return每种情况都要有
+            break;
+        }
+    }
+    return(result);
+}

@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isValid(string s);
+};
+
+bool Solution::isValid(string s){
+    if (s.empty()) return true;
+    unordered_map<char,char> m;
+    stack<char> st;
+    m['{'] = '}';
+    m['['] = ']';
+    m['('] = ')';
+    
+    for (int i = 0; i<s.size(); i++){
+        if (m.find(s[i]) != m.end())//查找 左括号情况  find(key)
+            st.push(s[i]);
+        else if(!st.empty() && m.find(st.top())->second == s[i])
+            st.pop();
+        else return false;
+    }
+    return st.empty();//-------------左括号是否多余
+}

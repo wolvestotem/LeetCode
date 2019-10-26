@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int missingNumber(vector<int>& nums);
+};
+
+int Solution::missingNumber(vector<int>& nums){
+    if(nums.empty())return(0);//---------nums.size()
+    unordered_map<int, int> amap;
+    int j;
+    for (int i = 0; i<nums.size(); i++){
+        amap[nums[i]] = i;
+    }
+    for (j = 0; j<nums.size()+1; j++){
+        if (amap.find(j) == amap.end())
+            break;
+    }
+    return(j);//----------------每种情况都要有return，循环外reuturn
+}

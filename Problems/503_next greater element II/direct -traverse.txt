@@ -1,0 +1,34 @@
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums);
+};
+
+vector<int> Solution::nextGreaterElements(vector<int>& nums){
+    vector<int> result;
+    if(nums.size()<1) return result;
+    int n = nums.size();
+    int times = n;
+    bool getit = false;
+    
+    // for (int i = 0; i<n; i++){
+    //     nums.push_back(nums[i]);
+    // }
+    for(int j=0; j<n; j++){
+        getit = false;
+        times = n;
+        // for(int p = j+1; p<(j+n); p++)
+        while(--times){
+            int p = (j+n-times)%n;//-------------------------- 求余，循环遍历通用方法
+            if (nums[p]>nums[j]){
+                result.push_back(nums[p]);
+                getit = true;
+                break;
+            }
+        }
+        if(getit == false){
+            result.push_back(-1);
+        }
+    }
+    return result;
+}
+

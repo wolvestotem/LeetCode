@@ -1,0 +1,19 @@
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums);
+};
+
+bool Solution::containsDuplicate(vector<int>& nums){
+    if (nums.size()<2) return(false);
+    unordered_map<int,int> dup;
+    dup[nums[0]] = 0;
+    bool result = false;
+    for (int i =1; i<nums.size(); i++){
+        if(dup.find(nums[i])!=dup.end()){//duplicate exists
+            result = true;
+            break;
+        }
+        dup[nums[i]] = i;
+    }
+    return (result);
+}

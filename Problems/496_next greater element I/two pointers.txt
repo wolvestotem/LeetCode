@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2);
+};
+
+//two pointers
+vector<int> Solution::nextGreaterElement(vector<int>& nums1, vector<int>& nums2){
+    vector<int> result;
+    bool getit = false;
+    if(nums1.empty()) return(result);
+    for(int i= 0; i<nums1.size(); i++){
+        for (int p = 0; p<nums2.size(); p++){
+            if (nums2[p] == nums1[i]){
+                getit = false;
+                for(int q= p+1; q<nums2.size(); q++){
+                    if(nums2[q] > nums2[p] && !getit){
+                        result.push_back(nums2[q]);
+                        getit = true;
+                    }
+                }
+                if (getit == false){
+                    result.push_back(-1);
+                }
+            }
+        }
+    }
+    return(result);
+}
+
+
+

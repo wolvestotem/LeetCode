@@ -1,0 +1,31 @@
+class MinStack {
+private:
+    vector<int> stack_;
+    // int min_ = INT_MAX;
+    //------------------------------------------------may influence the next value, so don't save it.
+public:
+    /** initialize your data structure here. */
+    MinStack() {
+        
+    }
+    
+    void push(int x) {
+        stack_.push_back(x);
+    }
+    
+    void pop() {
+        stack_.pop_back();
+    }
+    
+    int top() {
+        return (stack_[stack_.size()-1]);
+    }
+    
+    int getMin() {
+        min_ = INT_MAX;
+        for (int i =0; i<stack_.size(); i++){
+            min_ = (stack_[i]<min_)?stack_[i]:min_;
+        }
+        return min_;
+    }
+};

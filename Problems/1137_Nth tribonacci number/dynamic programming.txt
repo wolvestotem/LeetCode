@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int tribonacci_rec(int n);
+    int tribonacci(int n);
+};
+
+
+int Solution::tribonacci(int n){
+    if(n <2 )return(n);
+    unsigned long o = 0;
+    unsigned long p = 1;
+    unsigned long q = 1;
+    n = n-1;
+    while(n = n-1){
+        q = o+p+q;
+        p = q-o-p;
+        o = q-o-p;
+    }
+    return q;
+}

@@ -1,0 +1,40 @@
+class Solution {
+public:
+    bool canPartitionKSubsets(vector<int>& nums, int k);
+    bool DicanPartitionKSubsets(vector<int>& nums, int k, int dinum);
+};
+
+bool Solution::canPartitionKSubsets(vector<int>& nums, int k){
+        if (nums.size()<k+1) return false;
+        int sum = 0;
+        int dinum = 0;
+        for (int i = 0; i<nums.size(); i++){
+            sum += nums[i];
+        }
+        dinum = sum/k;
+        if (dinum - sum/k)
+            return false;
+        return DicanPartitionKSubsets(nums,k,dinum);
+    }
+    
+    bool Solution::DicanPartitionKSubsets(vector<int>& nums, int k, int dinum) {
+        int sum = 0;
+        for (int i = 0; i<nums.size(); i++){
+            sum += nums[i];
+        }
+        if (sum == dinum)
+            return true;
+        // if (nums[nums.size()-1] == dinum){
+        //     nums.erase(nums.end());
+        //     return(canPartitionKSubsets(nums, k-1));
+        // }
+        int bisum = 0;
+        for (int i =0; i< nums.size(); i++){
+            bisum += nums[i];
+            if (bisum == dinum){
+                nums.erase(nums.begin(), nums.begin()+i+1);
+                return DicanPartitionKSubsets(nums, k-1, dinum);
+            }
+        }
+        return false;
+    }
