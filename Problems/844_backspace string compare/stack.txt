@@ -1,0 +1,34 @@
+class Solution {
+public:
+    bool backspaceCompare(string S, string T);
+};
+
+bool Solution::backspaceCompare(string S, string T){
+    stack<char> stS;
+    stack<char> stT;
+    for (int i=0; i<S.size(); i++){
+        if(S[i]!='#')
+            stS.push(S[i]);
+        else if(S[i]=='#' && !stS.empty())
+            stS.pop();
+    }
+    for (int i=0; i<T.size(); i++){
+        if(T[i]!='#')
+            stT.push(T[i]);
+        else if(T[i]=='#' && !stT.empty())
+            stT.pop();
+    }
+    if(stT.size()!=stS.size())
+        return false;
+    
+    while(!stS.empty()){
+        if(stS.top()!=stT.top())
+            return false;
+        else{
+            stT.pop();
+            stS.pop();
+        }
+    }
+    return true;
+    
+}

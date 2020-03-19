@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<int> asteroidCollision(vector<int>& asteroids);
+};
+
+vector<int> Solution::asteroidCollision(vector<int>& asteroids){
+    if(asteroids.size()<=1) return asteroids; 
+    vector<int> result;
+    stack<int> row;
+        
+    for (int i=0; i<asteroids.size(); i++){
+        if(asteroids[i]>0)
+            row.push(asteroids[i]);
+        else if(asteroids[i]<0 && (row.empty()|| (!row.empty()&&row.top()<0)))
+            row.push(asteroids[i]);
+        else{
+            int collision = row.top()+asteroids[i];
+            if(collision<0){
+                row.pop();
+                i--;
+            }
+            else if(collision==0)
+                row.pop();
+        }
+    }
+    while(!row.empty()){
+        result.insert(result.begin(),row.top());
+        row.pop();
+    }
+    return(result);
+}

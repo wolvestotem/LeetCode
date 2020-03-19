@@ -1,0 +1,30 @@
+class Solution {
+public:
+    vector<int> nextGreaterElements(vector<int>& nums);
+};
+
+//best solution
+vector<int> Solution::nextGreaterElements(vector<int>& nums){
+    stack<int> st;
+    vector<int> ordinary;
+    if(nums.empty()) return ordinary;//平凡情况
+    int n = nums.size();
+    vector<int> result(n,-1);
+    
+    for (int i = 0; i<n; i++){
+        nums.push_back(nums[i]);
+    }
+
+    for (int i = 0; i<nums.size(); i++){
+        while(!st.empty() && nums[i]>nums[st.top()]){
+            result[st.top()]=nums[i];
+            st.pop();
+        }
+        st.push(i%n);
+    }
+    // while(!st.empty()){
+    //     result[st.top()]=-1;
+    //     st.pop();
+    // }
+    return(result);
+}
