@@ -1,0 +1,4 @@
+﻿  solve.cpp
+D:\LeetCode\面试题\阿里 笔试\qualification\solve.cpp(10,21): warning C4018: “<”: 有符号/无符号不匹配
+D:\LeetCode\面试题\阿里 笔试\qualification\solve.cpp(17,20): warning C4018: “<”: 有符号/无符号不匹配
+  qualification.vcxproj -> D:\LeetCode\面试题\阿里 笔试\qualification\Debug\qualification.exe

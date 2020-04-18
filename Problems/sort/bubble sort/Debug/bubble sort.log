@@ -1,0 +1,6 @@
+﻿  sort.cpp
+D:\LeetCode\Problems\sort\bubble sort\sort.cpp(7,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\LeetCode\Problems\sort\bubble sort\sort.cpp(8,21): warning C4018: “<”: 有符号/无符号不匹配
+D:\LeetCode\Problems\sort\bubble sort\sort.cpp(79,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\LeetCode\Problems\sort\bubble sort\sort.cpp(82,12): error C2373: “n”: 重定义；不同的类型修饰符
+D:\LeetCode\Problems\sort\bubble sort\sort.cpp(66): message : 参见“n”的声明
