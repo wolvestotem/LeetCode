@@ -18,3 +18,9 @@ struct TreeNode {
     TreeNode* right;
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
+
+struct ListNode {
+    ListNode* next;
+    int val;
+    ListNode(int x) :val(x), next(NULL) {}
+};

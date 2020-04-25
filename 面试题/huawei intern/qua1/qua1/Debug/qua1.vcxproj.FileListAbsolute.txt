@@ -1,0 +1,2 @@
+D:\LeetCode\面试题\huawei intern\qua1\qua1\Debug\qua1.exe
+D:\LeetCode\面试题\huawei intern\qua1\qua1\Debug\qua1.pdb

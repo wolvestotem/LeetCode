@@ -1,0 +1,4 @@
+﻿  solve.cpp
+D:\LeetCode\面试题\huawei intern\qua1\qua1\solve.cpp(10,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\LeetCode\面试题\huawei intern\qua1\qua1\solve.cpp(32,20): warning C4018: “<”: 有符号/无符号不匹配
+  qua1.vcxproj -> D:\LeetCode\面试题\huawei intern\qua1\qua1\Debug\qua1.exe

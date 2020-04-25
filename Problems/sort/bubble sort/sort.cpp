@@ -1,5 +1,4 @@
-#include<iostream>
-#include<vector>
+#include"leetcode.h"
 
 using namespace std;
 
@@ -62,6 +61,28 @@ void quick_sort(vector<int>& nums, int lo, int hi) {
 	quick_sort(nums, pivot + 1, hi);
 }
 
+
+void selection_sort(vector<int>& nums) {
+	for (int i = 0; i < nums.size() - 1; i++) {
+		int min = i;
+		for (int j = i + 1; j < nums.size(); j++) {
+			if (nums[j] < nums[min])
+				min = j;
+		}
+		swap(nums[i], nums[min]);
+	}
+}
+
+
+void insert_sort(vector<int>& nums) {
+	for (int i = 1; i < nums.size(); i++) {
+		for (int j = i; j >= 0; j--) {
+			if (nums[j] < nums[j - 1])
+				swap(nums[j], nums[j - 1]);
+		}
+	}
+}
+
 int main(){
 	int n;
 	vector<int> nums;
@@ -73,9 +94,10 @@ int main(){
 	}
 
 
-	//bubble_sort(nums);
-	//merge_sort(nums,0,nums.size()-1);
-	quick_sort(nums, 0, nums.size() - 1);
+	//bubble_sort(nums);//stable
+	//merge_sort(nums,0,nums.size()-1);//stable
+	//quick_sort(nums, 0, nums.size() - 1);//unstable
+	selection_sort(nums);//unstable
 	for (int i = 0; i < nums.size(); i++) {
 		cout << nums[i] << '\t';
 	}

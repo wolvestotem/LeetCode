@@ -1,0 +1,2 @@
+D:\LeetCode\Problems\sort\bubble sort\Debug\bubble sort.exe
+D:\LeetCode\Problems\sort\bubble sort\Debug\bubble sort.pdb
