@@ -2,6 +2,15 @@
 #define ll long long
 void solve();
 string pre;
+
+class KMP {
+private:
+	string model;
+public:
+	KMP(string pat) {
+		this->model = pat;
+	}
+};
 int main() {
 	solve();
 }
