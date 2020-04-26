@@ -1,5 +1,8 @@
+Stock 思路梳理
+=========
+
 这 6 道题目是有共性的，我就抽出来第 4 道题目，因为这道题是一个最泛化的形式，其他的问题都是这个形式的简化，看下题目：
-![](https://github.com/labuladong/fucking-algorithm/blob/master/pictures/%E8%82%A1%E7%A5%A8%E9%97%AE%E9%A2%98/title.png)
+![123](https://github.com/labuladong/fucking-algorithm/blob/master/pictures/%E8%82%A1%E7%A5%A8%E9%97%AE%E9%A2%98/title.png)
 第一题是只进行一次交易，相当于 k = 1；第二题是不限交易次数，相当于 k = +infinity（正无穷）；第三题是只进行 2 次交易，相当于 k = 2；剩下两道也是不限次数，但是加了交易「冷冻期」和「手续费」的额外条件，其实就是第二题的变种，都很容易处理。
 
 如果你还不熟悉题目，可以去 LeetCode 查看这些题目的内容，本文为了节省篇幅，就不列举这些题目的具体内容了。下面言归正传，开始解题。
@@ -42,7 +45,7 @@ for 0 <= i < n:
 现在，我们完成了「状态」的穷举，我们开始思考每种「状态」有哪些「选择」，应该如何更新「状态」。只看「持有状态」，可以画个状态转移图。
 ![](https://github.com/labuladong/fucking-algorithm/blob/master/pictures/%E8%82%A1%E7%A5%A8%E9%97%AE%E9%A2%98/1.png) 
 通过这个图可以很清楚地看到，每种状态（0 和 1）是如何转移而来的。根据这个图，我们来写一下状态转移方程：
-```C++
+``` C++
 dp[i][k][0] = max(dp[i-1][k][0], dp[i-1][k][1] + prices[i])
               max(   选择 rest  ,             选择 sell      )
 ```
