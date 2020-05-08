@@ -197,6 +197,7 @@ void solve() {
 	cout << S << endl;
 	int n_ = 33;
 	cout << n_ / 10 << endl;
+	
 }
 
 

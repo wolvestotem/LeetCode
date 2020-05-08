@@ -2,7 +2,6 @@
 
 
 int main(){
-    string s;
-    s.insert(s.begin(),2,'M');
-    cout<<s<<endl;
+    double t=1400000000;
+    cout<<t<<endl;
 } 
