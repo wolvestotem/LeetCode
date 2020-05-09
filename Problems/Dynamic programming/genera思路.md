@@ -1,0 +1,12 @@
+Dynamic Programming 一般思路
+=============
+
+1.定义子问题 subproblem---状态
+
+2.每个状态下的选择--------递推
+
+3.base case
+
+如果一般情况的子问题不行，封装优化为有限状态机，利用prior knowledge 把几个状态打包，合并状态类型
+如果递推式不好找，应该考量subproblem能否优化（LCS，four keys）
+递推是数学归纳过程，可以一阶，也可以多阶
