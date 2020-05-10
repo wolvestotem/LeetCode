@@ -2,11 +2,13 @@
 
 class Solution{
     int dp(int N, int k);
+};
 
 int Solution::dp(int N, int k){
     //剩余楼层N, 剩余鸡蛋k
     if(N==0) return 0;
     if(k==1) return N;
+    vector<int> tem(k+1,N);
     vector<vector<int>> table(N+1,tem);
 
     //N==0时 0步
