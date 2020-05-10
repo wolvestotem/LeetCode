@@ -8,6 +8,7 @@
 #include<iostream>
 #include<unordered_map>
 #include<stdlib.h>
+#include<typeinfo>
 
 using namespace std;
 

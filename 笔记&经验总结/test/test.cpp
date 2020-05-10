@@ -197,7 +197,20 @@ void solve() {
 	cout << S << endl;
 	int n_ = 33;
 	cout << n_ / 10 << endl;
-	
+	int a = 100;
+	int b = 0;
+	cout << "a^b=" << (b ^ a ^ b) << endl;
+	char c_ = 'f';
+	vector<vector<int>> vv(10, vector<int>(10, 0));
+	for (int i = 0; i < 10; i++) {
+		cout << vv[1][i] << '\t';
+	}
+	cout << endl;
+	cout << typeid(T).name() << endl;
+	cout << typeid(c_).name() << endl;
+
+	string num_ = "2345";
+	cout << stoi(num_,nullptr,16) << endl;
 }
 
 
