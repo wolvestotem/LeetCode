@@ -211,6 +211,8 @@ void solve() {
 
 	string num_ = "2345";
 	cout << stoi(num_,nullptr,16) << endl;
+
+	cout << (-33) % 10 << (-29) % 10 << endl;
 }
 
 
