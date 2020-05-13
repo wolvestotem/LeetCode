@@ -2,6 +2,7 @@ Leetcode Problems #1--#400
 ============
 
 #2 Add two number(Linked list)
+-------------
 一个充满细节考量的加法器。我自己使用一个时间复杂度和空间复杂度高的方法，迭代地使用加法器，并构造了一个新的Linked List序列记录结果。
 
 细节：
@@ -44,7 +45,84 @@ public:
 };
 ```
 
+#7 Reverse integer
+------------------------
+
++ 只能32位integer
+
+关键点在于INT_MAX比INT_MIN绝对值小1，所以不能对称的判断，而要分正负讨论
+
+另外对负数求余还是负数，可以直接求余入队
+
++ 可以使用long
+
+使用string可以更加方便的换顺序，最后加以验证
+
+#11 Container with most water
+-------------------
+
+最值问题，但是并不是用dp解决，思考时候限于dp太多
+
+brute force其实就比较好，T(n)=O(n2)，比较简单
+
+Discussion给出two pointers 解法。数组经常用左右指针，linked list经常用快慢指针。
+
+
+#19 Remove Nth node from the end
+-------------------
+
+本问题有三点值得注意：
+
++ 是list的问题，可以想到快慢指针，利用指针步数度量
++ 利用pre指针更好解决list问题，返回pre->next，而不是head，防止head被影响
++ 更好的初始化策略
+
+```C++
+// Initialization
+ListNode *fir(pre), *sec(pre);
+ListNode *fir{pre};
+```
+
+#22 Generate parentheses
+------------------
+
+本题关键点：backtracking，类似于permutation，或者BFS+剪枝。利用recurse充分讨论每层的所有情况，直至讨论结束。设计BFS剪枝方向时候，应该想好怎么判断，本题中用open,close,显然由于stack。
+
+```C++
+class Solution {
+    vector<string> result;
+public:
+    vector<string> generateParenthesis(int n);
+    void recur(int m, int open, int close ,string str,int n);
+};
+
+void Solution::recur(int m, int open, int close ,string str,int n){
+    if(m==0){//结束
+        result.push_back(str);
+        return;
+    }
+    else{
+        if(open<n){
+            recur(m-1,open+1,close,str+"(",n);//函数参数可以直接计算
+        }
+        if(close<open){
+            recur(m-1,open,close+1,str+")",n);
+        }
+    }
+}
+vector<string> Solution::generateParenthesis(int n){
+    int open=0;
+    int close=0;
+    string r="";
+    recur(2*n,open,close,r,n);
+    return result;
+}
+```
+
+
 #91 Decode ways
+-----------------
+
 经典dp问题，需要讨论s[i]是否为零。
 
 s[i]为零，只能table[i-2]后者return 0; s[i]不为零，讨论后两位是否能decode，分情况说明。
