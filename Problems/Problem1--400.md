@@ -50,7 +50,7 @@ public:
 
 + 只能32位integer
 
-关键点在于INT_MAX比INT_MIN绝对值小1，所以不能对称的判断，而要分正负讨论
+关键点在于`INT_MAX`比`INT_MIN`绝对值小1，所以不能对称的判断，而要分正负讨论
 
 另外对负数求余还是负数，可以直接求余入队
 
@@ -63,7 +63,7 @@ public:
 
 最值问题，但是并不是用dp解决，思考时候限于dp太多
 
-brute force其实就比较好，T(n)=O(n2)，比较简单
+brute force其实就比较好，`T(n)=O(n2)`，比较简单
 
 Discussion给出two pointers 解法。数组经常用左右指针，linked list经常用快慢指针。
 
@@ -119,13 +119,49 @@ vector<string> Solution::generateParenthesis(int n){
 }
 ```
 
+#34 Find first and last position of element in sorted array
+-----------------------------
+
+使用`Binary search`分别寻找区间左端点和右端点，找不到则返回-1。详情见[Binary Search](..\Binary search\思路.md)
+
+#39 Combination Sum
+----------------------------
+
+一次写得不错的permutation likely题目，同样是使用BFS+剪枝。本题目中最值得注意的是`Combination`而非`Permutation`，使用`rank`控制BFS只遍历当前和之后的`candidates`，而不去寻找之前的，保证了不重复的组合。
+
+
+#46 Permutation
+---------------------------
+
+这题是一个正经的permutation，而不是perm的变式。关键点在于使用一个`hash map`计量一个元素是否使用过，不再重复使用
+
+本题中主要出错点在`unordered_map.count`和`unordered_map.find`使用场景不清晰。使用过元素后，即使value归零，依然可以`find`到元素，`count`和`find`是完全相同功能函数。
+
+在类似本题的计量一个元素是否出现场景下，可以初始化map后就是用`value`计数；也可以创建元素后`unoedered_map.erase(key)`复原。使用`value`计数效率更高。
+
+```C++
+for(int i:nums)//初始化
+    m[i]=0;
+
+if(!m[i])
+    m[i]++;//value
+    recur(...);
+    m[i]--;
+```
+
+```C++
+if(m.find(i)==m.end())
+    m[i]++;
+    recur(...);
+    m.erase(i);//删除key
+```
 
 #91 Decode ways
 -----------------
 
-经典dp问题，需要讨论s[i]是否为零。
+经典dp问题，需要讨论`s[i]`是否为零。
 
-s[i]为零，只能table[i-2]后者return 0; s[i]不为零，讨论后两位是否能decode，分情况说明。
+`s[i]`为零，只能`table[i-2]`后者return 0; `s[i]`不为零，讨论后两位是否能decode，分情况说明。
 
 ```C++
 class Solution {
