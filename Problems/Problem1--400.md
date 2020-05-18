@@ -1,8 +1,7 @@
 Leetcode Problems #1--#400
 ============
 
-#2 Add two number(Linked list)
--------------
+### 2 Add two number(Linked list)
 一个充满细节考量的加法器。我自己使用一个时间复杂度和空间复杂度高的方法，迭代地使用加法器，并构造了一个新的Linked List序列记录结果。
 
 细节：
@@ -45,8 +44,7 @@ public:
 };
 ```
 
-#7 Reverse integer
-------------------------
+### 7 Reverse integer
 
 + 只能32位integer
 
@@ -58,8 +56,7 @@ public:
 
 使用string可以更加方便的换顺序，最后加以验证
 
-#11 Container with most water
--------------------
+### 11 Container with most water
 
 最值问题，但是并不是用dp解决，思考时候限于dp太多
 
@@ -68,8 +65,7 @@ brute force其实就比较好，`T(n)=O(n2)`，比较简单
 Discussion给出two pointers 解法。数组经常用左右指针，linked list经常用快慢指针。
 
 
-#19 Remove Nth node from the end
--------------------
+### 19 Remove Nth node from the end
 
 本问题有三点值得注意：
 
@@ -83,10 +79,9 @@ ListNode *fir(pre), *sec(pre);
 ListNode *fir{pre};
 ```
 
-#22 Generate parentheses
-------------------
+### 22 Generate parentheses
 
-本题关键点：backtracking，类似于permutation，或者BFS+剪枝。利用recurse充分讨论每层的所有情况，直至讨论结束。设计BFS剪枝方向时候，应该想好怎么判断，本题中用open,close,显然由于stack。
+本题关键点：backtracking，类似于permutation，或者DFS+剪枝。利用recurse充分讨论每层的所有情况，直至讨论结束。设计DFS剪枝方向时候，应该想好怎么判断，本题中用open,close,显然由于stack。
 
 ```C++
 class Solution {
@@ -119,19 +114,16 @@ vector<string> Solution::generateParenthesis(int n){
 }
 ```
 
-#34 Find first and last position of element in sorted array
------------------------------
+### 34 Find first and last position of element in sorted array
 
 使用`Binary search`分别寻找区间左端点和右端点，找不到则返回-1。详情见[Binary Search](..\Binary search\思路.md)
 
-#39 Combination Sum
-----------------------------
+### 39 Combination Sum
 
-一次写得不错的permutation likely题目，同样是使用BFS+剪枝。本题目中最值得注意的是`Combination`而非`Permutation`，使用`rank`控制BFS只遍历当前和之后的`candidates`，而不去寻找之前的，保证了不重复的组合。
+一次写得不错的permutation likely题目，同样是使用DFS+剪枝。本题目中最值得注意的是`Combination`而非`Permutation`，使用`rank`控制DFS只遍历当前和之后的`candidates`，而不去寻找之前的，保证了不重复的组合。
 
 
-#46 Permutation
----------------------------
+### 46 Permutation
 
 这题是一个正经的permutation，而不是perm的变式。关键点在于使用一个`hash map`计量一个元素是否使用过，不再重复使用
 
@@ -156,8 +148,215 @@ if(m.find(i)==m.end())
     m.erase(i);//删除key
 ```
 
-#91 Decode ways
------------------
+### 48 Rotate Image
+
+这是一道完全的数学找规律题目，通过`Transpose`+每行`reverse`实现矩阵顺时针旋转，不具有普适意义。
+
+### 49 Group Anagram
+
+一道经典的字符串乱序相等问题，是字符串乱序包含的子问题（B是否所有字母都在A中），一般认为有三种方法:
+
+- sort and compare
+- alpha vector
+- prime number
+
+**sort and compare**
+本题中因为是相等问题，可以使用`hash table`极大简化比较过程，`sort`后的线性比较变成了在`hash`中查找。应该注意`hash table`本题中的灵活用法。
+
+
+```C++
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs){
+        vector<vector<string>> result;
+        if(strs.empty()) return(result);
+        unordered_map<string,vector<string>> m;//hash table 可以用vector作为value
+
+        for(string str:strs){
+            string s = str;
+            sort(s.begin(),s.end());
+            m[s].push_back(str);//用key-value直接查找
+        }
+        for(auto tem:m){
+            result.push_back(tem.second);//m.second m.first使用
+        }
+        return result;
+    }
+};
+```
+
+**prime number**
+一种很好的方法，但是需要注意`product`可能是一个很大的数，使用`unsigned long long`
+
+**alpha vector**
+常见方法，使用26`vector`标记以个乱序字符串。
+
+### 55 Jump Game
+
+- Dynamic programming
+
+DP经典解法，可以OPT[n]=nums[n]是否从零可达，更简单的从后向前OPT[n]=是否可以从n到达`final`
+
+- Greedy
+
+经典`加油站覆盖`问题，Greedy solution: 每步的最大可达区域，不能低于当前位置
+
+```C++
+class Solution {
+public:
+    //Greedy solution: 每步的最大可达区域，不能低于当前位置
+    bool canJump(vector<int>& nums){
+        if(nums.empty()) return false;
+        int maxjump = 0;
+        for(int i=0;i<nums.size();i++){
+            if(maxjump<i)
+                return false;
+            maxjump = max(maxjump,nums[i]+i);
+        }
+        return true;
+    }
+};
+```
+
+### 56 Merge Intervals
+
+题目思路就是当intervals overlap时，找出最小`start`和最大`end`。先`sort start`，注意**二维矩阵中sort的默认排序是对第一列排序**，默认`sort`比`custom sort`高效。其中也有`加油站覆盖`思想，将`start`排序后，找出能够覆盖的最大值，并合并成一个interval。
+
+### 64 Minimum Path Sum
+
+经典DP问题，注意的是`base case`的初始化问题。`table`的第一行第一列要单独初始化
+
+```C++
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) {
+        if(grid.empty()) return 0;
+        int m = grid.size();
+        int n = grid[0].size();
+        vector<vector<int>> table(m+1,vector<int>(n+1,0));
+        for(int i=1;i<=m;i++){
+            for(int j=1;j<=n;j++){
+                if(i==1)//初始化第1行，第1列
+                    table[i][j] = table[i][j-1]+grid[i-1][j-1];
+                else if(j==1)
+                    table[i][j] = table[i-1][j]+grid[i-1][j-1];
+                else
+                    table[i][j] = min(table[i-1][j],table[i][j-1])+grid[i-1][j-1];//递推式
+            }
+        }
+        return table[m][n];
+    }
+};
+```
+
+### 70 Climbing Stairs
+
+简单的dp规划问题，需要看出爬到第n阶的本质是：通过n-1爬1格，或者n-2爬2格。
+
+### 75 Sort colors
+
+最自然的想法是排序算法`T(n)=O(nlogn)`，但是因为只有三个数，可以cout个数然后初始化得到结果`T(n)=O(n)`，但是空间复杂度`O(n)`。
+本题最佳解法是`transverse and swap`，实现排序
+
+```c++
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+        int n = nums.size();
+        int left = 0;
+        int right = n-1;
+        int index = 0;
+        while(index<=right){
+            switch(nums[index]){
+                case(0):
+                    swap(nums[left++],nums[index++]);
+                    break;
+                case(1):
+                    index++;
+                    break;
+                case(2):
+                    swap(nums[index],nums[right--]);//index
+                    break;
+            }
+        }
+    }
+};
+```
+
+### 78 Subsets
+
+可以使用经典`DFS+剪枝`，使用`permutation like`方法组合所有subsets，需要注意的是，使用`reference`必须注意每次调用`recur`函数都要还原所指代的`vector..`
+
+Subset经典思想是通过**二进制数**代表所有位数取与不取，可以让1右移`n-1`位按位与，得到一个subset
+
+```C++
+class Solution {
+public:
+    vector<vector<int>> subsets(vector<int>& nums) {
+        int n=nums.size();
+        int s=pow(2,n)-1;
+
+        vector<vector<int>> result;
+        vector<int>v;
+        for(int i=0;i<=s;i++){
+            for(int j=0;j<n;j++){
+                if(i & (1<<j))//1向右移逐位扫描，扫到得1
+                    v.push_back(nums[j]);
+            }
+            result.push_back(v);
+            v.clear();
+        }
+        return result;
+    }
+};
+```
+
+### 79 Word Search
+
+**重要的二维DFS剪枝题目，可以通过本题一窥图算法中的DFS用法**。
+
+- 题目DFS使用方法本质没变，只是使用`x,y`二维坐标指示搜索位置。
+- **返回值是bool类型，使本题更容易标识`base case`和越界条件**。
+- **利用`reference`recursive前后不变标识走过的路，防止重复走路**
+
+```C++
+class Solution {
+    string s;
+public:
+    bool dfs(vector<vector<char>>& board, int index, int x, int y){//返回bool类型
+        bool result;
+        if(x<0 || y<0 || x>=board.size() || y>=board[0].size())//临界条件
+            return false;
+        if(s[index]!=board[x][y])
+            return false;
+        if(index>=s.size()-1) 
+            return true;
+        char temp = board[x][y];
+        board[x][y] = '$';//---------------标识走过的路
+        result = dfs(board,index+1,x-1,y) || dfs(board,index+1,x+1,y) || dfs(board,index+1,x,y-1) || dfs(board,index+1,x,y+1);
+        board[x][y]=temp;//----------------还原路程
+        return result;
+    }
+    
+    bool exist(vector<vector<char>>& board, string word) {
+        s = word;
+        int m = board.size();
+        int n = board[0].size();
+        bool result = false;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(board[i][j]==s[0])
+                    result = dfs(board,0,i,j);
+                if(result)
+                    return true;
+            }
+        }
+        return false;
+    }
+};
+```
+
+### 91 Decode ways
 
 经典dp问题，需要讨论`s[i]`是否为零。
 
@@ -170,14 +369,13 @@ public:
 };
 
 int Solution::numDecodings(string s){
-    
     vector<int> table(s.size()+1,1);
     //base case
     if(s[0]=='0')
         return 0;
     else
         table[1]=1;
-    
+
     for(int i=2;i<=s.size();i++){
         if(s[i-1]!='0'){
             if(stoi(s.substr(i-2,2))<=26 && stoi(s.substr(i-2,2))>10)
@@ -195,3 +393,10 @@ int Solution::numDecodings(string s){
     return table[s.size()];
 }
 ```
+
+### 94 Binary tree Traversal
+
+经典遍历问题，使用`recursive`和`iteration`分别实现.
+
+
+

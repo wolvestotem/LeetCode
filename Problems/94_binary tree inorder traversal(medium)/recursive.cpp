@@ -1,3 +1,4 @@
+#include"../leetcode.h"
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -8,20 +9,16 @@
  * };
  */
 class Solution {
+    vector<int> result;//recursive 中常用全局记录结果
 public:
-    vector<int> result;
+    
     vector<int> inorderTraversal(TreeNode* root);
-    void tran(TreeNode* root);
 };
 vector<int> Solution::inorderTraversal(TreeNode* root){
-    if(!root) return(result);
-    tran(root);
-    return(result);
-}
-void Solution::tran(TreeNode* root){//通过全局result得到结果，而不必直接return结果
-    if(root){//--------------void递归中常用
-        tran(root->left);
+    if(root){
+        inorderTraversal(root->left);
         result.push_back(root->val);
-        tran(root->right);
+        inorderTraversal(root->right);
     }
+    return result;
 }
