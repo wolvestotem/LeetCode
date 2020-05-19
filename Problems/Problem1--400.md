@@ -490,4 +490,4 @@ int Solution::maxProfit(vector<int>& prices){
 
 - Stock类DP方法
 
-![](./Dynamic programming/general思路.md)
+![DP 思路](https://github.com/wolvestotem/LeetCode/blob/master/Problems/Dynamic%20programming/general%E6%80%9D%E8%B7%AF.md)
