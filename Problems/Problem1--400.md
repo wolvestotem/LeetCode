@@ -398,5 +398,95 @@ int Solution::numDecodings(string s){
 
 经典遍历问题，使用`recursive`和`iteration`分别实现.
 
+### 98 Validate binary search tree
 
+当使用`inorder`遍历搜索二叉树时，应该单调增的，所以遍历，并判断单调性。
 
+### 101 Symmetric Tree
+
+- Iteration方法
+两个`queue`分别在每层进行从左向右和从右向左的层次遍历，比较并判断它们是否实时相等。
+
+- recursive方法
+两个对应位置`TreeNode`指针，应该判断`->val`相等，`l->left`和`r->right`对称，`l->right`和`r->left`对称
+
+### 102 Binary Tree Level Order Traversal
+
+在层次遍历法中，按照每层进行处理是一种重要的技巧。每次的`q.size()`就是一层中的所有`Node`个数,标准范式如下：
+
+```C++
+void level order traversal(){
+    queue<TreeNode*> q;
+    q.push(root);
+    TreeNode* tem;
+    while(!q.empty()){
+        int n = q.size();
+        vector<int> inter;
+        while(n--){
+            tem = q.front();
+            q.pop();
+            visit(tem);
+            if(tem->left) q.push(tem->left);
+            if(tem->right) q.push(tem->right);
+        }
+    }
+}
+```
+
+### 104 Max depth of Binary Tree
+
+经典recursive方法，根节点max depth等于左右子节点max depth+1.
+
+### 105 Construct Binary tree from preorder and inorder traversal
+
+本题不具有拓展性，采用recursive分治法结题。依次使用前序元素分割中序数组，分割后递归处理。一开始`pos=0`，以`preorder[pos]`为根，对应`inorder`中全部元素，preorder[pos]在inorder中对应位置p，将inorder分割成`[0,p-1],[p+1,end()]`两部分，对应左子树和右子树。
+
+```C++
+TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        int pos=0;
+        return mytree(preorder, pos, inorder, 0, inorder.size()-1);
+    }
+    
+    TreeNode* mytree(vector<int>& preorder, int& pos, vector<int>& inorder, int inL, int inR){
+        if(pos>=preorder.size()) return nullptr;
+        TreeNode* root = new TreeNode(preorder[pos]);
+        int num=0;
+        for(num=inL;num<=inR;num++){
+            if(preorder[pos]==inorder[num])
+                break;
+        }
+        if(inL<num) root->left = mytree(preorder, ++pos, inorder, inL, num-1);
+        if(num<inR) root->right = mytree(preorder, ++pos, inorder, num+1, inR);
+        return root;
+    }
+```
+
+### 114 Flatten Binary tree to Linked list
+
+- `preorder traversal`
+本题是按照preorder顺序排列linked list，所以第一感觉是通过`preorder traversal`重新连接TreeNode，实现排列。观察发现将左右孩子入栈后正好可以保护好不被覆盖，所以通过stack存储原节点，通过head重写新Linked list.
+
+- `preorder pointer`
+需要观察和对分治思想的领会。对于每个root，将左子树变成右子树，再将右子树连在左子树最右node上，递归实现。
+
+### 121 Best time to buy and sell stock
+
+- 快慢指针
+只允许一次买卖操作，并且卖一定快于买，所以使用快慢指针。快慢指针的核心在于，慢指针前移的判断条件和方式。
+
+```C++
+int Solution::maxProfit(vector<int>& prices){
+    if(prices.size()<2)return(0);
+    int profit=0;
+    int min = prices[0];
+    int size = prices.size();
+    for(int i = 1; i<size; i++){
+        profit = (prices[i]-min>profit)?(prices[i]-min):profit;
+        min = (prices[i]>min)?min:prices[i];
+    }
+    return(profit);
+}
+```
+
+- Stock类DP方法
+见[DP方法总结](./Dynamic programming/general思路.md)
