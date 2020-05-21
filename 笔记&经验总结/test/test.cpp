@@ -213,6 +213,15 @@ void solve() {
 	cout << stoi(num_,nullptr,16) << endl;
 
 	cout << (-33) % 10 << (-29) % 10 << endl;
+
+	unordered_set<int> lookup;
+	lookup.insert(4);
+	lookup.insert(1);
+	lookup.insert(1);
+	lookup.insert(1);
+	lookup.insert(2);
+	for (auto i : lookup)
+		cout << i << ' ';
 }
 
 
