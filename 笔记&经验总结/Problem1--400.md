@@ -563,4 +563,60 @@ int Solution::maxProfit(vector<int>& prices){
 
 ![DP方法总结](https://github.com/wolvestotem/LeetCode/blob/master/Problems/Dynamic%20programming/stock%20max%20profit/DP%20%E6%80%9D%E8%B7%AF.md)
 
- 
+ ### 159 至多包含两个不同字符的子串
+
+子串问题，window解决
+
+- valid: map.size()<=2
+- result 左移右移时候更新
+- left right 双指针移动时候更新
+
+做题前应该想明白核心问题：
+
+1. 怎么valid, 怎么不valid
+2. 右移更新什么，左移更新什么
+3. 结果在哪计算
+
+本题因为没想明白怎么通过左移返回valid状态，而误选了`unordered_set`,实际应该使用`unordered_map`计量字符出现次数，以此缩小`size`
+
+### 340 至多包含k个不同字符的子串
+
+子串问题，window解决
+
+- valid: map.size()<=2
+- result 左移右移时候更新
+- left right 双指针移动时候更新
+
+做题前应该想明白核心问题：
+
+1. 怎么valid, 怎么不valid
+2. 右移更新什么，左移更新什么
+3. 结果在哪计算
+
+```C++
+class Solution {
+public:
+    int lengthOfLongestSubstringKDistinct(string s, int k) {
+        if(k==0 || s.size()==0)
+            return 0;
+        int maxlength(0),left(0),right(0);
+        int length(0);
+        unordered_map<char,int> dic;
+
+        while(right<s.size()){
+            dic[s[right]]++;
+            length++;
+            while(dic.size()>k){
+                dic[s[left]]--;
+                length--;
+                if(dic[s[left]]==0)
+                    dic.erase(s[left]);
+                left++;
+            }
+            maxlength = max(maxlength,length);
+            right++;
+        }
+        return maxlength;
+    }
+};
+```
