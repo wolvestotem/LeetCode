@@ -563,6 +563,77 @@ int Solution::maxProfit(vector<int>& prices){
 
 ![DP方法总结](https://github.com/wolvestotem/LeetCode/blob/master/Problems/Dynamic%20programming/stock%20max%20profit/DP%20%E6%80%9D%E8%B7%AF.md)
 
+### 146 LRU Cache
+
+**根据需求分析需要的数据结构**，需求分析：
+
+- 可以在O(1)时间内查找key-value
+- 有序，可以提现出操作的先后顺序
+- 操作顺序时候需要删除和插入，O(1)时间
+
+所以我们需要unordered_map再O(1)时间内查找；用`list`记录`pair<key,value>`，可以在O(1)时间内删除和插入；unordered_map记录`key`和`list<pair>的指针`，用来建立两者之间的关联。**unordered_map中善用iterator可以将所有数据类型都加入到hash table中**
+
+注意：
+
+- **在任何操作中应该思考更新什么数据**，本题中除了要更新order外，还应该更新map
+
+```C++
+class LRUCache {
+    unordered_map<int,list<pair<int,int>>::iterator> map;
+    list<pair<int,int>> order;
+    int capacity_;
+public:
+    LRUCache(int capacity):capacity_(capacity) {
+        
+    }
+    
+    int get(int key) {
+        if(!map.count(key))
+            return -1;
+        else{
+            list<pair<int,int>>::iterator it;
+            it = map[key];
+            pair<int,int> kv = *it;
+            order.erase(it);
+            order.push_front(kv);
+            map[key]=order.begin();
+            return kv.second;
+        }
+    }
+    
+    void put(int key, int value) {
+        if(map.count(key)){
+            list<pair<int,int>>::iterator it;
+            it = map[key];
+            pair<int,int> kv = *it;
+            kv.second = value;
+            order.erase(it);
+            order.push_front(kv);
+            map[key] = order.begin();
+        }
+        else{
+            if(order.size()==capacity_){
+                map.erase(order.back().first);
+                order.pop_back();
+                order.push_front(make_pair(key,value));
+                map[key] = order.begin();
+            }
+            else{
+                order.push_front(make_pair(key,value));
+                map[key] = order.begin();
+            }
+        }
+    }
+};
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache* obj = new LRUCache(capacity);
+ * int param_1 = obj->get(key);
+ * obj->put(key,value);
+ */
+ ```
+
  ### 159 至多包含两个不同字符的子串
 
 子串问题，window解决

@@ -10,6 +10,7 @@
 #include<stdlib.h>
 #include<typeinfo>
 #include<unordered_set>
+#include<list>
 
 using namespace std;
 

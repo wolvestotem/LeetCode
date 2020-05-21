@@ -66,10 +66,10 @@ bool perm(vector<int>& nums) {
 	return true;
 }
 
-ListNode* generate(vector<int> list) {
+ListNode* generate(vector<int> l) {
 	ListNode* curr=new ListNode(0);
 	ListNode* ptr = curr;
-	for (auto item : list) {
+	for (auto item : l) {
 		ptr->next = new ListNode(item);
 		ptr = ptr->next;
 	}
@@ -172,9 +172,9 @@ void solve() {
 		cout << endl;
 	}
 
-	vector<int> list = { 1,2,3,4,5,6 };
+	vector<int> l = { 1,2,3,4,5,6 };
 	ListNode* head;
-	head = generate(list);
+	head = generate(l);
 	head=reverse(head);
 	while (head) {
 		cout << head->val << ' ';
@@ -222,6 +222,20 @@ void solve() {
 	lookup.insert(2);
 	for (auto i : lookup)
 		cout << i << ' ';
+	cout << endl;
+
+	list<int>::iterator it;
+	list<int> mylist(10, 10);
+	it = mylist.begin();
+	it++;
+	for (auto i : mylist)
+		cout << i << ' ';
+	cout << endl;
+	mylist.insert(it, 20);
+	mylist.insert(it, 2, 5);
+	for (auto j : mylist)
+		cout << j << ' ';
+
 }
 
 
