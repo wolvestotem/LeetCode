@@ -563,6 +563,12 @@ int Solution::maxProfit(vector<int>& prices){
 
 ![DP方法总结](https://github.com/wolvestotem/LeetCode/blob/master/Problems/Dynamic%20programming/stock%20max%20profit/DP%20%E6%80%9D%E8%B7%AF.md)
 
+### 143 Reorder list
+
+首先的想法是线性顺序储存list所有node，然后按照题目要求重新连接node，我储存在了map中，其实可以存在vector里
+
+更巧妙的构想是：观察结果，发现可以将list分成前后两部分看，前半部分顺序，后半部分倒序，然后融合成一个新的list。已知可以对list分成两半，reverse，融合两个list
+
 ### 146 LRU Cache
 
 **根据需求分析需要的数据结构**，需求分析：
