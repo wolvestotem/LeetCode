@@ -15,6 +15,46 @@ int main() {
 	solve();
 }
 
+bool comparison(const string a, const string b) {
+	return a.size() < b.size();
+}
+
+string arrangeWords(string text) {
+	//32
+	if (text.size() == 0) return "";
+	vector<string> word;
+	text[0] = tolower(text[0]);
+	int start(0);
+	// int j=0;
+	// for(int i=0;i<text.size();i++){
+	//     if(i==0)
+	//         word[0].push_back(tolower(text[0]));
+	//     else if(isspace(text[i])){
+	//         j++;
+	//         word.push_back("");
+	//     }
+	//     else{
+	//         word[j].push_back(text[i]);
+	//     }
+	// }
+	while (text.find_first_of(" ") != string::npos) {
+		int found = text.find_first_of(" ");
+		text[found] = '*';
+		word.push_back(text.substr(start, found - start));
+		start = found + 1;
+	}
+	word.push_back(text.substr(start));
+	stable_sort(word.begin(), word.end(), comparison);
+	string result;
+	for (int i = 0; i < word.size(); i++) {
+		result = result + word[i];
+		if (i != word.size() - 1)
+			result += " ";
+	}
+	result[0] = toupper(result[0]);
+	return result;
+}
+
 bool strfcn(char a,char b) {
 	return pre.find(a) < pre.find(b);
 }
@@ -235,7 +275,10 @@ void solve() {
 	mylist.insert(it, 2, 5);
 	for (auto j : mylist)
 		cout << j << ' ';
-
+	cout << endl;
+	string result;
+	result = arrangeWords("To be or not to be");
+	cout << result << endl;
 }
 
 

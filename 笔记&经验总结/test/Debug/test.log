@@ -1,10 +1,11 @@
 ﻿  test.cpp
-D:\LeetCode\笔记&经验总结\test\test.cpp(35,52): warning C4018: “<”: 有符号/无符号不匹配
-D:\LeetCode\笔记&经验总结\test\test.cpp(40,18): warning C4018: “>”: 有符号/无符号不匹配
-D:\LeetCode\笔记&经验总结\test\test.cpp(43,10): warning C4018: “>=”: 有符号/无符号不匹配
-D:\LeetCode\笔记&经验总结\test\test.cpp(58,18): warning C4018: “<”: 有符号/无符号不匹配
-D:\LeetCode\笔记&经验总结\test\test.cpp(115,20): warning C4018: “<”: 有符号/无符号不匹配
-D:\LeetCode\笔记&经验总结\test\test.cpp(141,20): warning C4018: “<”: 有符号/无符号不匹配
-D:\LeetCode\笔记&经验总结\test\test.cpp(164,20): warning C4018: “<”: 有符号/无符号不匹配
-D:\LeetCode\笔记&经验总结\test\test.cpp(169,21): warning C4018: “<”: 有符号/无符号不匹配
+D:\LeetCode\笔记&经验总结\test\test.cpp(49,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\LeetCode\笔记&经验总结\test\test.cpp(75,52): warning C4018: “<”: 有符号/无符号不匹配
+D:\LeetCode\笔记&经验总结\test\test.cpp(80,18): warning C4018: “>”: 有符号/无符号不匹配
+D:\LeetCode\笔记&经验总结\test\test.cpp(83,10): warning C4018: “>=”: 有符号/无符号不匹配
+D:\LeetCode\笔记&经验总结\test\test.cpp(98,18): warning C4018: “<”: 有符号/无符号不匹配
+D:\LeetCode\笔记&经验总结\test\test.cpp(155,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\LeetCode\笔记&经验总结\test\test.cpp(181,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\LeetCode\笔记&经验总结\test\test.cpp(204,20): warning C4018: “<”: 有符号/无符号不匹配
+D:\LeetCode\笔记&经验总结\test\test.cpp(209,21): warning C4018: “<”: 有符号/无符号不匹配
   test.vcxproj -> D:\LeetCode\笔记&经验总结\test\Debug\test.exe
