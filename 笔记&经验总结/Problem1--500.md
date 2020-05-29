@@ -123,6 +123,19 @@ vector<string> Solution::generateParenthesis(int n){
 }
 ```
 
+### 23 Merge k sorted lists
+
+本题中需要注意的有两点：平凡情况讨论与k个数动态排序的数据结构使用。
+
+**平凡情况**
+在`vector<ListNode*> lists`中，设计指针，**需要讨论`nullptr`**，可能lists为空，也可能包含nullptr无效。如果是数字，应该注意讨论过大溢出和过小不符合题意的非法输入。
+
+**有序数据结构的讨论**
+- heap
+默认是maxheap，可以使用函数指针或者lambda函数构建minheap，注意每个heap函数都要加函数指针，并且要和vector联用
+- multimap
+map本身也是有序数据结构，但是multimap的key可以重复，注意不能使用`[]`，而要使用emplace构建
+
 ### 34 Find first and last position of element in sorted array
 
 使用`Binary search`分别寻找区间左端点和右端点，找不到则返回-1。详情见[Binary Search](..\Binary search\思路.md)

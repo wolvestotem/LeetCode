@@ -69,7 +69,16 @@ int main(){
 	reverse(v.begin(), v.end());
 	sort(v.begin(), v.end(),myfunc);
 	for (int i = 0; i < v.size(); i++)
+		cout << v[i] << '\t';	reverse(v.begin(), v.end());
+	sort(v.begin(), v.end(),myfunc);
+	for (int i = 0; i < v.size(); i++)
 		cout << v[i] << '\t';
+    swap(v[1],v[2]);
+    vector<int>::iterator low,hi;
+    low = lower_bound(v.begin(),v.end(),20);
+    hi = upper_bound(v.begin(),v.end(),20);
+    cout<<distance(v.begin(),low)<<distance(v.begin(),hi)<<endl;
+    // 10 10 10 20 20 20 30 30--->low->3  hi->6
     swap(v[1],v[2]);
     vector<int>::iterator low,hi;
     low = lower_bound(v.begin(),v.end(),20);
