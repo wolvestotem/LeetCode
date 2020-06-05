@@ -53,7 +53,7 @@ while(ss>>w) word.emplace_back(w);
 - stable_sort
 
 ```C++
-stable_sort(word.begin(),word.end(),[](const string &a, const string &b){return a.size()<b.size();>});
+stable_sort(word.begin(),word.end(),[](const string &a, const string &b){return a.size()<b.size();});
 ```
 
 - sort

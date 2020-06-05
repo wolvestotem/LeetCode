@@ -576,6 +576,13 @@ int Solution::maxProfit(vector<int>& prices){
 
 ![DP方法总结](https://github.com/wolvestotem/LeetCode/blob/master/Problems/Dynamic%20programming/stock%20max%20profit/DP%20%E6%80%9D%E8%B7%AF.md)
 
+### 138 Copy list with random pointer
+
+题目和copy没有random pointer的题很像，我们先遍历一遍，复制主体，在遍历一遍复制random pointer。注意`unordered_map`在链表中以指针形式发挥的作用。
+
+**traveral and update方法，一定想清楚那些量需要update**
+**特殊输入问题**
+
 ### 143 Reorder list
 
 首先的想法是线性顺序储存list所有node，然后按照题目要求重新连接node，我储存在了map中，其实可以存在vector里
@@ -644,7 +651,6 @@ public:
         }
     }
 };
-
 /**
  * Your LRUCache object will be instantiated and called as such:
  * LRUCache* obj = new LRUCache(capacity);

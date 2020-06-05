@@ -279,6 +279,9 @@ void solve() {
 	string result;
 	result = arrangeWords("To be or not to be");
 	cout << result << endl;
+
+	int aa = 2;
+	cout << ((aa - 1) >>1) << endl;
 }
 
 
