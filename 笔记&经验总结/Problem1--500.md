@@ -659,6 +659,63 @@ public:
  */
  ```
 
+### 148 Sort List
+
+**合理化用merge sort，理解递归base case**
+
+做题中出现的问题：
+- 递归base case没想就想当然使用nullptr，陷入无限循环
+- 使用指针的时候思路不顺畅，不更新每个指针->next
+- 不理解merge sort，有返回值就难以下手
+
+```C++
+class Solution {
+public:
+    ListNode* merge(ListNode* left, ListNode* right){
+        if(!right) return left;
+        ListNode *pre = new ListNode(0);
+        ListNode *curr(pre);
+        while(left && right){
+            curr->next = (left->val > right->val)?(right):(left);
+            curr = curr->next;
+            (left->val > right->val)?(right = right->next):(left = left->next);
+        }
+        if(left || right){
+            curr->next = (left)?left:right;
+        }
+        return pre->next;
+    }
+    
+    
+    ListNode* sortList(ListNode* head) {
+        if(!head || !head->next) return head;//base case
+        ListNode *left(head);
+        // ListNode *pre = new ListNode(-1);
+        // pre->next = head;
+        // ListNode *fa(pre),*sl(pre);
+        if(!head || !head->next) return head;
+        ListNode *fa(head->next), *sl(head);
+        
+        while(fa && fa->next){
+            sl = sl->next;
+            fa = fa->next->next;
+        }
+        ListNode *right(sl->next);
+        sl->next = nullptr; 
+
+        ListNode *result,*sortleft,*sortright;
+        sortleft = sortList(left);
+        sortright = sortList(right);
+        
+        result = merge(sortleft,sortright);
+        return result;
+    }
+
+};
+```
+
+递归应该想明白和上一级和下一级的关系，sortlist是把list变得有序，所以`sortlist(left)`已经是有序left，不用再考虑细节问题。对上一级就是怎样实现list有序的过程，要明确目的。
+
  ### 159 至多包含两个不同字符的子串
 
 子串问题，window解决
@@ -674,6 +731,11 @@ public:
 3. 结果在哪计算
 
 本题因为没想明白怎么通过左移返回valid状态，而误选了`unordered_set`,实际应该使用`unordered_map`计量字符出现次数，以此缩小`size`
+
+### 160 Intersection of Two Linked List
+
+快慢指针思想的延伸，指针成环检验的另一种形式。因为有公共和非公共部分，把非公共部分都走一遍就是公共部分了。
+也可以使用unordered_set。
 
 ### 340 至多包含k个不同字符的子串
 
