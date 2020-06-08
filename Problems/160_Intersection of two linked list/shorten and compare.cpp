@@ -1,3 +1,5 @@
+#include"../leetcode.h"
+
 /**
  * Definition for singly-linked list.
  * struct ListNode {
