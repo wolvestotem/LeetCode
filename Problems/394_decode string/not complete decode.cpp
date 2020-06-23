@@ -1,3 +1,5 @@
+#include"../leetcode.h"
+
 class Solution {
 public:
     string decodeString(string s);
