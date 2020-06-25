@@ -136,9 +136,22 @@ vector<string> Solution::generateParenthesis(int n){
 - multimap
 map本身也是有序数据结构，但是multimap的key可以重复，注意不能使用`[]`，而要使用emplace构建
 
+### 29 Divide two integers
+
+- 平凡情况的讨论：
+特殊输入：在指针中是nullptr，数值计算中是除零和溢出检测**注意int[-2^31, 2^31-1]**正负不对称情况
+
+- 递归中是base case结束条件
+
+在位运算时候右移后在左移并不等
+
 ### 34 Find first and last position of element in sorted array
 
 使用`Binary search`分别寻找区间左端点和右端点，找不到则返回-1。详情见[Binary Search](..\Binary search\思路.md)
+
+### 36 Valid sudoku
+
+查重问题中，当选项有限个时（比如char或者0-9数字）可以使用vector<bool>简便地0,1表示是否访问过该元素，起到unorder_set的作用
 
 ### 39 Combination Sum
 
@@ -794,6 +807,14 @@ public:
     }
 };
 ```
+
+### 372 Super pow
+
+对于recursive的理解完全错误！！
+
+recurse中需要关注主问题的全部细节，但是不需要关注子问题的任何细节，要相信函数可以做到子问题要做的事情。注意写base case停止条件
+
+题目本身应该非常容易联想到递归方法，可以减而治之，减小问题规模，问题性质相同
 
 ### 440 K-th Smallest in Lexicographical Order
 
