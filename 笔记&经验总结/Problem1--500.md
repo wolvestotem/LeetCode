@@ -157,6 +157,15 @@ map本身也是有序数据结构，但是multimap的key可以重复，注意不
 
 一次写得不错的permutation likely题目，同样是使用DFS+剪枝。本题目中最值得注意的是`Combination`而非`Permutation`，使用`rank`控制DFS只遍历当前和之后的`candidates`，而不去寻找之前的，保证了不重复的组合。
 
+### 40 Combination Sum II
+
+同样是DFS+剪枝的题目，需要注意的是当满足条件时，应该立即终止DFS递归调用，防止`duplicate`。
+39、40题中`duplicate`两种情况讨论
+
+- index不能前移
+防止[2,3],[3,2]重复
+
+- 当input数组本身有重复时，用set\<vector\<int\>\>去除重复
 
 ### 46 Permutation
 
