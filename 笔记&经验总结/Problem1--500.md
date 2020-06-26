@@ -546,6 +546,9 @@ void level order traversal(){
     }
 }
 ```
+### Binary Tree Zigzag Level Order Traversal
+
+一次不错的靠例程发现逻辑漏洞的做题经历，直接的level order不能达到效果，需要使用stack翻转queue中元素的顺序，再入queue
 
 ### 104 Max depth of Binary Tree
 
@@ -605,6 +608,12 @@ int Solution::maxProfit(vector<int>& prices){
 - Stock类DP方法
 
 ![DP方法总结](https://github.com/wolvestotem/LeetCode/blob/master/Problems/Dynamic%20programming/stock%20max%20profit/DP%20%E6%80%9D%E8%B7%AF.md)
+
+### 131 Palindrome partitioning
+
+之前题目关键点在于怎么dfs，本题重点在于怎么判断palindrome和dfs结合起来
+
+关键要想到使用dp做出OPT(i,j)，得到一个节点起始的所有可以的pailindrome对，根据dp table进行剪枝。
 
 ### 138 Copy list with random pointer
 
