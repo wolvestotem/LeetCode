@@ -586,6 +586,10 @@ TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
 - `preorder pointer`
 需要观察和对分治思想的领会。对于每个root，将左子树变成右子树，再将右子树连在左子树最右node上，递归实现。
 
+### 116 Populating Next Right Pointers in Each Node
+
+本题是level order的典型应用，通过从右到左的level traversal，记录pre节点值，完成next指针链接
+
 ### 121 Best time to buy and sell stock
 
 - 快慢指针
@@ -608,6 +612,21 @@ int Solution::maxProfit(vector<int>& prices){
 - Stock类DP方法
 
 ![DP方法总结](https://github.com/wolvestotem/LeetCode/blob/master/Problems/Dynamic%20programming/stock%20max%20profit/DP%20%E6%80%9D%E8%B7%AF.md)
+
+### 127 word ladder
+
+**求最短路径，应该想到BFS**。
+对于查找，应该想到使用`unordered_set`，每次换一个字符，使用O(m)时间判断是否有差1单词。
+
+
+### 130 Surrounded regions
+
+二维DFS总结：
+- 四邻域法dfs递归
+- base case中，限制区域
+- 使用未使用标记访问元素，**记得还原**
+
+灵活使用DFS，DFS本质是对规则内连通区域检测，本题只需对边缘`O`联通区域检测并标记，就可以获得所有非法`O`，而合法`O`则不变。
 
 ### 131 Palindrome partitioning
 
