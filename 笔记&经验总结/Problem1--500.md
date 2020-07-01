@@ -73,6 +73,19 @@ brute force其实就比较好，`T(n)=O(n2)`，比较简单
 
 Discussion给出two pointers 解法。数组经常用左右指针，linked list经常用快慢指针。
 
+### 15 three sum
+
+本题中最值得分析的是两点：two pointers法的运用场景，duplicate问题考量方法
+two pointers
+可以用在sum这种一个增大，另一个就应该相应减小的场景，也符合vector中双指针一般为左右指针的惯例。注意必须sort后才有意义。
+
+duplicate
+i和j是可以相同的，但是i，j在遍历时都不能和上一次值重复，另一种情况是左右指针不能交换位置
+
+### 16 3Sum closest
+
+和3sum基本一样。
+需要注意result初始值取值，使得result-target不溢出，并且一定比sum-target大。
 
 ### 19 Remove Nth node from the end
 
@@ -640,6 +653,11 @@ int Solution::maxProfit(vector<int>& prices){
 
 **traveral and update方法，一定想清楚那些量需要update**
 **特殊输入问题**
+
+### 139 Word break
+
+dp[n]是s[n]是否可分。
+递推式：dp[n]=dp[i] && substr(i+1,n-i) in dict， 或者substr(0,n) in dict。
 
 ### 143 Reorder list
 
