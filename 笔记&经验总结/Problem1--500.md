@@ -659,6 +659,11 @@ int Solution::maxProfit(vector<int>& prices){
 dp[n]是s[n]是否可分。
 递推式：dp[n]=dp[i] && substr(i+1,n-i) in dict， 或者substr(0,n) in dict。
 
+### 140 Word Break II
+
+可以直接backtracking, 但是有优化空间。
+可以先计算可分table(Word Break),只backtracking可分位置
+
 ### 143 Reorder list
 
 首先的想法是线性顺序储存list所有node，然后按照题目要求重新连接node，我储存在了map中，其实可以存在vector里
@@ -792,7 +797,15 @@ public:
 
 递归应该想明白和上一级和下一级的关系，sortlist是把list变得有序，所以`sortlist(left)`已经是有序left，不用再考虑细节问题。对上一级就是怎样实现list有序的过程，要明确目的。
 
- ### 159 至多包含两个不同字符的子串
+### 152 maximum product subarray
+
+应该注意最优子结构还可以是以i结尾的最优子问题。
+`subarray`子串，子数组这类问题的最优子结构选择结尾方式居多，子序列问题也可以选择结尾表达，但是需要多阶递推，而子串为题只需要一阶递推关系。
+明确最优子结构后，**应该注意到最大值和最小值对于正负号的不同，所以将两个最值都作为状态。和股票问题类似**
+本题特有问题，可以选择抛弃之前的，直选当前项，应该考虑到。
+随后的输出要非常明确table含义，应当遍历取最大值作为输出。
+
+### 159 至多包含两个不同字符的子串
 
 子串问题，window解决
 
@@ -816,6 +829,29 @@ public:
 ### 234 Palindrome Linked List
 
 指针的基本操作，快慢指针求中点、reverse list结合起来
+
+### 238 Product of array except self
+
+一个脑筋急转弯，使用两个table，一个表示res[i]之前的数的乘积，一个表示res[i]之后的数的乘积，使用O(n)时间，O(n)空间，
+进一步地，可以将res写在fornt table里，然后用一个数代表back table，使用O(1)的空间完成任务。
+
+### 279 Perfect Square
+
+注意dp问题可以一阶，可以多阶，这种多种选择的问题，一般都要多阶比较求得最大最小值。
+
+### Longest increasing subsequence
+
+方法1：DP
+构造最优子问题，首先是一个结尾最优，然后子序列问题需要多阶递推式，时间O(n)
+
+方法2：Greedy
+table[i]是最长递增子序列的最小尾数，更新这个尾数和len表示的序列长度。因为序列单调增，可以使用二分查找
+对于插入问题，应该考虑left_inv查找，table[left]就是插入位置
+
+### 322 Coins change
+
+类似于perfect square问题，不同点在于可能会出现不能匹配的情况，应该注意该情况的分类讨论。
+OPT(n)是amount=n时最少换钱数量，所以用多阶dp求出之前的最小值，最小值的初值应该是INT_MAX使对比有效。最小值+1应该排除INT_MAX，最后输出也要排除dp[amount]=INT_MAX的情况输出-1.
 
 ### 328 Odd even linked list
 
