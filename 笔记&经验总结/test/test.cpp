@@ -282,6 +282,8 @@ void solve() {
 
 	int aa = 2;
 	cout << ((aa - 1) >>1) << endl;
+
+	cout << to_string(-1) << endl;
 }
 
 

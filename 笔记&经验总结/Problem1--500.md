@@ -647,6 +647,11 @@ int Solution::maxProfit(vector<int>& prices){
 
 关键要想到使用dp做出OPT(i,j)，得到一个节点起始的所有可以的pailindrome对，根据dp table进行剪枝。
 
+### 134 gas station
+
+循环index可以使用求余解决问题
+Greedy sum
+
 ### 138 Copy list with random pointer
 
 题目和copy没有random pointer的题很像，我们先遍历一遍，复制主体，在遍历一遍复制random pointer。注意`unordered_map`在链表中以指针形式发挥的作用。
@@ -825,6 +830,12 @@ public:
 
 快慢指针思想的延伸，指针成环检验的另一种形式。因为有公共和非公共部分，把非公共部分都走一遍就是公共部分了。
 也可以使用unordered_set。
+
+### 162 Find peak element
+
+通过时间复杂度应该可以给出题目方法的重要启示。O(logn)复杂度对应的就是二分法，所以就应该想的是怎么样使用二分法将问题规模减半
+之后就比较自然了，因为边界是负无穷，mid如果不是peak，则mid大的一边必然存在peak，规模减半
+要注意的是边界条件的处理，讨论mid是0，size()-1的情况
 
 ### 234 Palindrome Linked List
 
