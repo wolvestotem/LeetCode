@@ -1,7 +1,13 @@
 #include"leetcode.h"
+#include<thread>
 #define ll long long
 void solve();
 string pre;
+
+void print(int n) {
+	for(int i=0;i<n;i++)
+		cout << "hello world" << i << endl;
+}
 
 class KMP {
 private:
@@ -284,6 +290,11 @@ void solve() {
 	cout << ((aa - 1) >>1) << endl;
 
 	cout << to_string(-1) << endl;
+
+	thread th1(print, 3);
+	cout << "hhh" << endl;
+	th1.join();
+	cout << "hi" << endl;
 }
 
 
