@@ -1,0 +1,3 @@
+﻿  solve.cpp
+D:\LeetCode\面试题\bytedance\interview1\Solve\solve.cpp(43,15): warning C4018: “<”: 有符号/无符号不匹配
+  Solve.vcxproj -> D:\LeetCode\面试题\bytedance\interview1\Solve\Debug\Solve.exe
