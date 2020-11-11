@@ -61,6 +61,12 @@ int main(){
     cout<<"found"<<endl;
     else
     cout << "not found"<<endl;
+    m.count(10)==1;//found OR 0 not found
+
+    unordered_set<int> mm;
+    if(mm.find(10)!=mm.end())
+        cout<<"found";
+    mm.count(10)==1;//found OR 0-not found
     
     //----------------------------------------------常用algorithm function
     vector<int> v;
