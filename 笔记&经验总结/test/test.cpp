@@ -165,28 +165,6 @@ void solve() {
 		cout << "found" << endl;
 	else
 		cout << "not found" << endl;
-
-	vector<int> v;
-	for (int i = 0; i < 10; i++) {
-		v.push_back(i);
-		v.push_back(i);
-	}
-	reverse(v.begin(), v.end());
-	//sort(v.begin(), v.end(),myfunc);
-	sort(v.begin(), v.end());
-	v.insert(v.begin() + 1, 10000);
-	v.erase(v.begin() + 1, v.begin() + 3);
-	v.resize(distance(v.begin(),unique(v.begin(), v.end())));
-	v.erase(v.begin() + 2);
-	int pos = distance(v.begin(), lower_bound(v.begin(), v.end(), 2));
-	cout << pos << endl;
-	v.insert(v.begin() + pos, 2);
-	reverse(v.begin(), v.begin() + 3);
-	reverse(v.begin() + 3, v.end());
-	reverse(v.begin(), v.end());
-	for (int i = 0; i < v.size(); i++)
-		cout << v[i] << '\t';
-	cout << endl;
 	
 	string str("Please, replace the vowels in this sentence by asterisks.");
 	int found = str.find_first_of("aeiou");
@@ -295,6 +273,28 @@ void solve() {
 	cout << "hhh" << endl;
 	th1.join();
 	cout << "hi" << endl;
+	vector<int> v;
+	for (int i = 0; i < 10; i++) {
+		v.push_back(i);
+		v.push_back(i);
+	}
+	reverse(v.begin(), v.end());
+	//sort(v.begin(), v.end(),myfunc);
+	sort(v.begin(), v.end());
+	v.insert(v.begin() + 1, 10000);
+	v.erase(v.begin() + 1, v.begin() + 3);
+	v.resize(distance(v.begin(), unique(v.begin(), v.end())));
+	v.erase(v.begin() + 2);
+	int pos = distance(v.begin(), lower_bound(v.begin(), v.end(), 2));
+	cout << pos << endl;
+	for (auto y : v) {
+		cout << y << ' ';
+	}
+	cout << endl;
+	int aaa = 5;
+	int bb = 3;
+	double cc = (double)aaa/bb;
+	cout << bb%aaa;
 }
 
 

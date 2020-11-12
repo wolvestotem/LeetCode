@@ -308,6 +308,45 @@ public:
 
 题目思路就是当intervals overlap时，找出最小`start`和最大`end`。先`sort start`，注意**二维矩阵中sort的默认排序是对第一列排序**，默认`sort`比`custom sort`高效。其中也有`加油站覆盖`思想，将`start`排序后，找出能够覆盖的最大值，并合并成一个interval。
 
+### 60 permutation sequence
+
+我的解法是直观而低效的一种，按照规则排列出前k个，然后输出。需要注意两点：
+
+1. 排列中输出一个可行解的方法
+
+```C++
+// 函数找到一个答案后就返回 true
+bool backtrack(vector<string>& board, int row) {
+    // 触发结束条件
+    if (row == board.size()) {
+        res.push_back(board);
+        return true;
+    }
+    ...
+    for (int col = 0; col < n; col++) {
+        ...
+        board[row][col] = 'Q';
+
+        if (backtrack(board, row + 1))
+            return true;
+        
+        board[row][col] = '.';
+    }
+
+    return false;
+}
+```
+
+2. 全排列问题两种解法--swap和vector用法
+
+swap高效，但是不能保持nums顺序
+
+vecotr效率低，但是可以灵活，保持顺序，更加普世
+
+Discussion解法也比较直观，**DFS剪枝**
+只要是perm问题都需要注意不能使用visited数字，所以还要有visit vector控制可选列表
+比价k和factorial的大小，可以向前移动
+
 ### 64 Minimum Path Sum
 
 经典DP问题，注意的是`base case`的初始化问题。`table`的第一行第一列要单独初始化

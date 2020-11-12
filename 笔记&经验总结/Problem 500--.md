@@ -1,6 +1,10 @@
 Leetcode Problems #500--
 ============
 
+### 526 Beautiful Arrangement
+
+熟悉的permutation方法，使用swap提高效率，对每次swap前判断剪枝，本题需要注意的是判断条件设定，还有最后一个数在循环中没有判断，需要额外判断。
+
 ### 1143 Longest common subsequence/substring
 
 - subsequence
