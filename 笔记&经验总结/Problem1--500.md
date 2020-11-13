@@ -185,6 +185,10 @@ map本身也是有序数据结构，但是multimap的key可以重复，注意不
 
 - 当input数组本身有重复时，用set\<vector\<int\>\>去除重复
 
+两道combination可以看到与permutation的区别和联系，permutation中要使用之前的数，所以用visit标识状态。combination中希望不使用index之前的数导致重复。
+
+还需要注意是combination去除重复方法，记录数字可用次数，是一种（取、不取）的延伸。
+
 ### 46 Permutation
 
 这题是一个正经的permutation，而不是perm的变式。关键点在于使用一个`hash map`计量一个元素是否使用过，不再重复使用

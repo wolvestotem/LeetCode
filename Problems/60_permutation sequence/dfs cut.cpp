@@ -14,8 +14,6 @@ public:
                     k-=cnt;
                     continue;
                 }
-                // if(visit[j])
-                //     continue;
                 res.push_back(nums[j]);
                 visit[j]=1;
                 break;
