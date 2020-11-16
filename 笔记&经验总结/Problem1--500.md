@@ -474,6 +474,10 @@ public:
 };
 ```
 
+### 77 Combinations
+
+经典combination题目，选择列表+路径+终止条件，注意最终return结果，和index和i谁递增问题
+
 ### 78 Subsets
 
 可以使用经典`DFS+剪枝`，使用`permutation like`方法组合所有subsets，需要注意的是，使用`reference`必须注意每次调用`recur`函数都要还原所指代的`vector..`
@@ -901,9 +905,40 @@ public:
 之后就比较自然了，因为边界是负无穷，mid如果不是peak，则mid大的一边必然存在peak，规模减半
 要注意的是边界条件的处理，讨论mid是0，size()-1的情况
 
+### 216 Combination Sum III
+
+Classic combination method
+
 ### 234 Palindrome Linked List
 
 指针的基本操作，快慢指针求中点、reverse list结合起来
+
+### 236 lowest common ancestor of a binary tree
+
+使用recursive达到回溯的效果
+
+```C++
+int recur(TreeNode* p, TreeNode* q, TreeNode* root){
+        if(root==nullptr)
+            return 0;
+        int sum=0;
+
+        if(root->left) sum+=recur(p,q,root->left);
+        if(root->right) sum+=recur(p,q,root->right);
+        
+        if(root==p)
+            sum+=1;
+        if(root==q)
+            sum+=1;
+        if(sum==2 && flag){
+            res= root;
+            flag=false;
+        }
+        return sum;
+    }
+```
+
+**重要的是多个flag的处理方法，单个flag可以使用bool，多个可以使用int二进制，如果不区分还可以直接加法**
 
 ### 238 Product of array except self
 
