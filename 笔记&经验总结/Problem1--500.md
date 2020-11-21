@@ -905,6 +905,14 @@ public:
 之后就比较自然了，因为边界是负无穷，mid如果不是peak，则mid大的一边必然存在peak，规模减半
 要注意的是边界条件的处理，讨论mid是0，size()-1的情况
 
+### 207 course schedule
+
+topological sort. Use in DAG(有向无环图)，可以判断具有依赖关系的能否走通，需要维护一个degree入度vector和queue入度为0节点
+
+### 210 course schedule
+
+topological sort. Use in DAG(有向无环图)，可以判断具有依赖关系的能否走通,记录路径
+
 ### 216 Combination Sum III
 
 Classic combination method
