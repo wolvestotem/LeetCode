@@ -294,7 +294,9 @@ void solve() {
 	int aaa = 5;
 	int bb = 3;
 	double cc = (double)aaa/bb;
-	cout << bb%aaa;
+	cout << bb % aaa << endl;;
+	cout << endl;
+	cout << sizeof(string) << ' ' << sizeof(vector<int>)<<' '<<sizeof(int);
 }
 
 
