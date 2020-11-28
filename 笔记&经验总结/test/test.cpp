@@ -296,7 +296,12 @@ void solve() {
 	double cc = (double)aaa/bb;
 	cout << bb % aaa << endl;;
 	cout << endl;
-	cout << sizeof(string) << ' ' << sizeof(vector<int>)<<' '<<sizeof(int);
+	cout << sizeof(string) << ' ' << sizeof(vector<int>) << ' ' << sizeof(int) << endl;;
+
+	string ss;
+	ss = ss + 'a' + 'b';
+	cout << ss << endl;
+	cout << *(v.end()-1) << endl;
 }
 
 
