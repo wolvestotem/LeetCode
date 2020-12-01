@@ -170,5 +170,7 @@ public:
 ## 注意事项
 
 1. 声明TrieNode成员public
-2. search中必须判断最终节点是否是leaf
-3. startwith不需要判断是否是leaf-09
+2. Trie类型中构造函数初始化root
+3. search中必须判断最终节点是否是leaf
+4. startwith不需要判断是否是leaf
+5. curr->leaf是在子节点中的性质，map.count()是父节点中的性质，需要理清楚判断节点条件
