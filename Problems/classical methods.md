@@ -94,3 +94,89 @@ vector<int> bfs(TreeNode* root){
     return result;
 }
 ```
+
+## Reverse Linked list
+
+### Iteration
+
+```C++
+ListNode* reverse(ListNode* head) {
+    if (!head) return nullptr;
+    ListNode* curr = head;
+    ListNode* pre = nullptr;
+    ListNode* fu=head;
+    while (fu) {
+        fu = curr->next;
+        curr->next = pre;
+        pre = curr;
+        curr = fu;
+    }
+    return(pre);
+}
+```
+
+### Recursion
+
+```C++
+ListNode* reverse(ListNode* head) {
+    if(!head || !head->next) return head;
+    ListNode* res = reverse(head->next);
+    head->next->next = head;
+    head->next = nullptr;
+
+    return res;
+}
+```
+
+## Linked list取中点
+```C++
+void mid(ListNode* head){
+    if(!head || !head->next)
+        return head;
+    ListNode *sl(head),*fa(head->next);
+
+    while(fa && fa->next){
+        sl = sl->next;
+        fa = fa->next->next;
+    }
+}
+```
+
+## Traverse Graph
+
+### topological traverse
+
+```C++
+vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+        queue<int> q;
+        int V=numCourses;
+        vector<vector<int>> graph(V,vector<int>{});//出度
+        vector<int> degree(V,0);//入度 另行记录！！
+        for(auto v:prerequisites){
+            graph[v[1]].push_back(v[0]);
+            degree[v[0]]++;
+        }
+        for(int i=0;i<V;i++){
+            if(degree[i]==0)
+                q.push(i);
+        }
+
+        vector<int> res;
+        // int count=0;
+        while(!q.empty()){
+            int t=q.front();
+            q.pop();
+            res.push_back(t);
+            // count++;
+            for(auto node:graph[t]){
+                if(--degree[node]==0)
+                    q.push(node);
+            }
+        }
+        if(res.size()==V)
+            return res;
+        else
+            return vector<int>{};
+    }
+```
+

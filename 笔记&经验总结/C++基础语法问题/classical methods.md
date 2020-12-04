@@ -97,49 +97,55 @@ vector<int> bfs(TreeNode* root){
 
 ## Reverse Linked list
 
+### Iteration
+
 ```C++
 ListNode* reverse(ListNode* head) {
-	if (!head) return nullptr;
-	ListNode* curr = head;
-	ListNode* pre = nullptr;
-	ListNode* fu=head;
-	while (fu) {
-		fu = curr->next;
-		curr->next = pre;
-		pre = curr;
-		curr = fu;
-	}
-	return(pre);
-}
-ListNode* generate(vector<int> list) {
-	ListNode* curr=new ListNode(0);
-	ListNode* ptr = curr;
-	for (auto item : list) {
-		ptr->next = new ListNode(item);
-		ptr = ptr->next;
-	}
-	ptr = curr->next;
-	delete curr;
-	return ptr;
-}
-
-int main(){
-    vector<int> list = { 1,2,3,4,5,6 };
-	ListNode* head;
-	head = generate(list);
-	head=reverse(head);
-	while (head) {
-		cout << head->val << ' ';
-		head = head->next;
-	}
-	cout << endl;
+    if (!head) return nullptr;
+    ListNode* curr = head;
+    ListNode* pre = nullptr;
+    ListNode* fu=head;
+    while (fu) {
+        fu = curr->next;
+        curr->next = pre;
+        pre = curr;
+        curr = fu;
+    }
+    return(pre);
 }
 ```
 
+### Recursion
+
+```C++
+ListNode* reverse(ListNode* head) {
+    if(!head || !head->next) return head;
+    ListNode* res = reverse(head->next);
+    head->next->next = head;
+    head->next = nullptr;
+
+    return res;
+}
+```
+
+## Linked list取中点
+```C++
+void mid(ListNode* head){
+    if(!head || !head->next)
+        return head;
+    ListNode *sl(head),*fa(head->next);
+
+    while(fa && fa->next){
+        sl = sl->next;
+        fa = fa->next->next;
+    }
+}
+```
 
 ## Traverse Graph
 
 ### topological traverse
+
 ```C++
 vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
         queue<int> q;
