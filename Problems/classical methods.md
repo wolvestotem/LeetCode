@@ -95,6 +95,22 @@ vector<int> bfs(TreeNode* root){
 }
 ```
 
+### Serialize tree（唯一确定一颗子树）
+
+```C++
+string serilize(TreeNode* root){
+        if(!root){
+            return "#";
+        }
+        string l = serilize(root->left);
+        string r = serilize(root->right);
+        string v = to_string(root->val);
+        string res = l+","+r+","+v;
+
+        return res;
+    }
+```
+
 ## Reverse Linked list
 
 ### Iteration
