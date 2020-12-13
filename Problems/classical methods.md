@@ -121,7 +121,24 @@ ListNode* reverse(ListNode* head) {
     ListNode* curr = head;
     ListNode* pre = nullptr;
     ListNode* fu=head;
-    while (fu) {
+    while (curr!=nullptr) {
+        fu = curr->next;
+        curr->next = pre;
+        pre = curr;
+        curr = fu;
+    }
+    return(pre);
+}
+```
+
+### Reverse K node [head, b)
+```C++
+ListNode* reverseK(ListNode* head, ListNode* b) {
+    if (!head) return nullptr;
+    ListNode* curr = head;
+    ListNode* pre = b;
+    ListNode* fu=head;
+    while (curr!=b) {
         fu = curr->next;
         curr->next = pre;
         pre = curr;
@@ -140,6 +157,22 @@ ListNode* reverse(ListNode* head) {
     head->next->next = head;
     head->next = nullptr;
 
+    return res;
+}
+```
+
+### Reverse K node 
+```C++
+TreeNode* successor=nullptr;
+ListNode* reverseK(ListNode* head, int K) {
+    if(!head) return nullptr;
+    if(K==1){
+        successor = head->next;
+        return head;
+    }
+    ListNode* res = reverseK(head->next, K-1);
+    head->next->next = head;
+    head->next = successor;
     return res;
 }
 ```
