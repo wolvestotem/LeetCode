@@ -20,3 +20,4 @@ void traverse(TreeNode root) {
 }
 ```
 
+BST的定义中还有一个重要性质，**对于 BST 的每一个节点node，它的左侧子树和右侧子树都是 BST**，是一个非常recursive的结构，lc 95和96两道题中得到很充分的体现。构造一个BST，只需要构造根节点本身，再左右子树分别构造两棵BST。
