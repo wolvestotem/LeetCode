@@ -1,6 +1,10 @@
 # 经典方法总结
 
-## Tree Transverse
+[Tree](#tree_transverse)
+[list](#reverse_linked_list)
+[Graph](#Traverse_Graph)
+
+## tree_transverse
 
 ### pre-order recursive
 
@@ -111,7 +115,7 @@ string serilize(TreeNode* root){
     }
 ```
 
-## Reverse Linked list
+## reverse_linked_list
 
 ### Iteration
 
@@ -191,7 +195,7 @@ void mid(ListNode* head){
 }
 ```
 
-## Traverse Graph
+## Traverse_Graph
 
 ### topological traverse
 

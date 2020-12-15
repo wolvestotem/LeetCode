@@ -50,3 +50,5 @@ void connectTwoNode(Node node1, Node node2) {
 **递归问题还应该注意要写base case，在二叉树问题中多数都是对nullptr的讨论**
 
 **对于构造二叉树的问题，根节点要做的就是把想办法把自己构造出来。**(654 max binary tree)
+
+129_Sum Root to Leaf Numbers启示我们，**树全遍历问题也可以看做dfs+backtracking问题**，按照backtracking模板解题
