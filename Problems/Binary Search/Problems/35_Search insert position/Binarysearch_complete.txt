@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target);
+};
+
+
+int Solution::searchInsert(vector<int>& nums, int target){//Solution::作用域
+    if(nums.empty())return(0);
+    int mi;
+    int lo = 0;
+    int hi = nums.size();
+    while(lo < hi){
+        mi = (lo + hi) >> 1;             //C++中iterator不能进行加法，所以应该使用下标计算
+        (target<nums[mi])?hi = mi:lo = mi+1;
+    }
+    return(binary_search(nums.begin(),nums.end(),target)?--lo:lo);
+    
+}

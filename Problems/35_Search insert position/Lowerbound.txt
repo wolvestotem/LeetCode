@@ -1,5 +1,0 @@
-int searchInsert(const vector<int>& nums, const int& target) {
-		auto first = lower_bound(nums.begin(), nums.end(), target);
-		int result = distance(nums.begin(), first);
-		return result;
-	}
